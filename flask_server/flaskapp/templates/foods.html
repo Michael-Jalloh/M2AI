@@ -1,0 +1,71 @@
+{% extends 'dashboard_base.html' %}
+
+{% block head %}
+<title>Foods</title>
+
+{% endblock %}
+
+
+{% block body %}
+<div>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    {{msg}}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="row">
+
+        <div class="col-12 pb-3">
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-outline-dark" href="{{url_for('admin.addNewFood')}}">Add New Food</a>
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+
+              <div class="card-header p-2">
+                
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="{{url_for('admin.getFoods', food_type='starter')}}">Starter</a></li>
+                  <li class="nav-item"><a class="nav-link"  href="{{url_for('admin.getFoods', food_type='lunch')}}">Lunch</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{url_for('admin.getFoods', food_type='break')}}" data-toggle="tab">Breakfast</a></li>
+                </ul>
+               
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="active tab-pane" id="activity">
+                    {% for food in foods %}
+
+
+                    <div>
+                        {{food.name}}
+                    </div>
+
+
+                    {% endfor %}
+                  </div>
+
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+          </div>
+
+
+
+    </div>
+</div>
+
+<script>
+  
+    document.getElementById('foodHref').classList.add("active");
+
+</script>
+{% endblock %}

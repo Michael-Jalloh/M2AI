@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home Page</title>
+
+{% endblock %}
+
+
+{% block body %}
+<div>
+
+
+    <div class="wrapper-2">
+
+        <div class="wrapper-2-gradient ">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background: rgba(0, 0, 0, 1);  box-shadow: 0 0 3.4rem 0 rgb(0 0 0 / 10%);" >
+                <a class="navbar-brand" href="#">M2AI</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+
+        
+        
+                    {% if session['email']  %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login">Login  </a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </nav>
+        
+            <div class="center-screen">
+             
+
+
+                <div class="card mx-5 custom-card-1">
+                    <div class="card-body mx-5">
+                        <a href="/" class="navbar-brand">
+                        <!-- <img src="dist/img/cover.png" alt="AdminLTE Logo" class="elevation-3" style=" width:130px; height:60px;"> -->
+                        </a>
+
+                                    <p style="font-size: 1.6rem;" class=" mt-2">Login Form</p>
+                                    <div class="text-danger">
+                                        {% with messages = get_flashed_messages(category_filter='error') %}
+                                            {% if messages %}
+                                                {% for msg in messages %}
+                                                    {{msg}}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                    <form method="POST" action="#">
+
+                                        <div class="form-group row">
+
+                                            <label for="Email" class="col-12 col-form-label text-left">Email</label>
+    
+                                            <div class="col-12">
+                                                <input id="Email" type="email" class="form-control" name="email" required  autofocus>
+
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group row">
+                                            <label for="password" class="col-12 col-form-label text-left">Password</label>
+    
+                                            <div class="col-12">
+                                                <input id="password" type="password" class="form-control" name="password" required >
+
+                                            </div>
+                                        </div>
+
+    
+                                        <div class=" row mt-4">
+                                            <div class="col-12">
+                                                <button type="submit" class="btn w-100 btn-lg text-white" style="background: rgb(89 133 37 / 48%);">
+                                                    Login
+                                                </button>
+    
+
+                                            </div>
+                                        </div>
+                                    </form>
+    
+                    </div>
+                <!-- /.form-box -->
+                </div>
+    
+
+    
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends 'dashboard_base.html' %}
+
+{% block head %}
+<title>Orders</title>
+
+{% endblock %}
+
+
+{% block body %}
+<div>
+
+
+    <div>
+
+        <section class="content pb-5 px-5 ">
+
+            <!-- Default box -->
+            <div class="card mx-5 " style='box-shadow: none;'>
+                <div class="card-body mx-5 pb-0">
+                    
+    
+
+                    <div class="row card mx-5 bg-white-2">
+                        <div class="col-12 base3 px-0">
+                            <div class="d-flex mt-3 justify-content-center"><h3> 
+                                Add Food
+                            </h3>
+                            
+                            </div>
+                            
+                        </div>
+
+                        <!-- <div class="col-6">
+                                <img  alt="user-avatar" class="img-square img-fluid">
+
+                        </div> -->
+                        <div class="col-12">
+                            <div class="text-danger">
+                                {% with messages = get_flashed_messages(category_filter='error') %}
+                                    {% if messages %}
+                                        {% for msg in messages %}
+                                            {{msg}}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div class="text-success">
+                                {% with messages = get_flashed_messages(category_filter='success') %}
+                                    {% if messages %}
+                                        {% for msg in messages %}
+                                            {{msg}}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+
+                        </div>
+                        <div class="col-12 mt-5">
+
+                        
+                            <div class="input-group mb-3">
+                                  
+
+                                  <div class="image-container mx-auto">
+                                      <div class="image-wrapper">
+                                          <div id='image' class="image">
+                                              <img  src="" alt="">
+                                          </div>
+
+                                          <div id="cancel-btn"><i class="fas fa-times"></i></div>
+                                          <div class="file-name" >File name here</div>
+                                      </div>
+
+                                  </div>
+
+
+
+                              </div>
+
+                              <div class="text-center">
+                                  <label for="file" class='btn btn-default base2'> Choose an image</label>
+
+                              </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="ml-0 pl-0 mt-4 mb-4 text-dark text-center">
+                            <h3> 
+                               Dish Information
+                            </h3>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+
+                            <form class="form-horizontal" method='post' enctype="multipart/form-data"  action='#'>
+                                <input id="file" name='file' type="file" onchange='showSelected()' hidden>
+                         
+                                <div class="form-group row">
+                                    <label for="businessName" class="col-sm-2 col-form-label">Food Name</label>
+                                    <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="businessName" name='food_name' 
+                                    value=''>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="price" class="col-sm-2 col-form-label">Price</label>
+                                    <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="price" name='price' 
+                                    value=''>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputName2" class="col-sm-2 col-form-label">Category</label>
+                                    <div class="col-sm-10">
+                                    <select class="form-control" name='category' placeholder="Category" required>
+                                    <option value="" disabled selected>Select Category</option> 
+                                    {% for type in foodTypes %}
+
+                                        <option value="{{type.id}}"> {{type.food_type}}</option>
+
+                                    {% endfor %}
+                                    
+                                </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                    <textarea style=' height: 105px;' class="form-control" id="description"  name='description' ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group d-flex justify-content-between">
+                                        <div class="">
+                                            <a href="#>" class="btn btn-danger">Cancel</a>
+                                        </div>
+                                        <div class="">
+                                            <button type="submit" name="submit" class="btn btn-default base1">Submit</button>
+                                        </div>
+                                    
+                                </div>
+                            </form>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            <!-- /.card-body -->
+
+            </div>
+            <!-- /.card -->
+
+        </section>
+
+
+
+
+
+        
+    </div>
+
+
+
+</div>
+
+<script>
+    document.getElementById('foodHref').classList.add("active");
+
+    var upload_div = document.getElementById('image');
+
+
+    showSelected = function() {
+        var input = document.getElementById('file');
+    
+
+        console.log(URL.createObjectURL(input.files[0]));
+        upload_div.innerHTML = '<img class="px-2" src=' + URL.createObjectURL(input.files[0]) + ' alt=' + input.files.item(0).name  +' >';
+    
+    }
+</script>
+{% endblock %}
