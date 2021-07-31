@@ -39,6 +39,9 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - yes pls
+    - yes please
+    - yeah
 
 - intent: deny
   examples: |
@@ -49,6 +52,8 @@ nlu:
     - don't like that
     - no way
     - not really
+    - nothing
+    
 
 - intent: mood_great
   examples: |
@@ -93,8 +98,8 @@ nlu:
 
 - intent: get_menu
   examples: |
-    - whats on the menu?
-    - lets see the menu
+    - whats on the [menu](food_type)?
+    - lets see the [menu](food_type)
     - what u serving today?
     - whats cooking?
     - am hungry
@@ -105,27 +110,31 @@ nlu:
     - get me some food
     - food pls
     - we are hungry
+    - whats on the [main](food_type) menu
+    - whats the [main](food_type) today 
+    - show me the [main](food_type) menu
+    - lets see the [main](food_type) menu
+    - lets see the [mains](food_type:main)
+    - [mains](food_type)
+    - whats the [starter](food_type) menu
+    - show me [starters](food_type:starter)
+    - i want to [starters](food_type:starter)
+    - [starters](food_type:starter)
+    - I will like some [starters](food_type:starter)
+    - show us the [lunch](food_type) menu
+    - show me the [lunch](food_type)
+    - [lunch](food_type)
+    - whats for [lunch](food_type)
+    - I need some [lunch](food_type)
+    - we need [lunch](food_type)
 
-- intent: get_main
+- intent: add_food
   examples: |
-    - whats on the main menu
-    - whats the main today 
-    - show me the main menu
-    - lets see the main menu
-    - lets see the mains
-    - mains 
-  
-- intent: get_starters
-  examples: |
-    - whats the starter menu
-    - show me starters
-    - i want to startesrs
-    - starters
-    - I will like some starters
-
-- intent: get_lunch
-  examples: |
-    - show us the lunch menu
-    - show me the lunch
-    - lunch
-    - whats for lunch
+    - I want coke
+    - I want burger
+    - add sprite
+    - add 3 chicken and chips
+    - give me 8 chicken wraps
+    - give us some fish
+    - we want beef stew
+    - we will take some chicken fingers and some fish and chips
