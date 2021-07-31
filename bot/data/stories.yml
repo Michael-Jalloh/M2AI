@@ -28,3 +28,64 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: get menu path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: get_menu
+  - action: action_get_menu
+
+- story: greet path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: get menu path 2
+  steps:
+  - intent: get_menu
+  - action: action_get_menu
+
+- story: add food path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: add_food
+  - action: action_add_food
+
+- story: add food path 2
+  steps:
+  - intent: add_food
+  - action: action_add_food
+
+- story: add food path process
+  steps:
+  - intent: add_food
+  - action: action_add_food
+  - intent: deny
+  - action: utter_should_process_order
+  - intent: affirm
+  - action: action_process_order
+
+- story: add food path process deny
+  steps:
+  - intent: add_food
+  - action: action_add_food
+  - intent: deny
+  - action: utter_should_process_order
+  - intent: deny
+  - action: action_cancel_order
+
+- story: deny process order
+  steps:
+  - intent: deny
+  - action: utter_should_process_order
+  - intent: deny
+  - action: action_cancel_order
+
+- story: accept process order
+  steps:
+  - intent: deny
+  - action: utter_should_process_order
+  - intent: affirm
+  - action: action_process_order

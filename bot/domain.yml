@@ -8,6 +8,18 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - get_menu
+  - add_food
+
+entities:
+  - food_type
+
+slots:
+  food_type:
+    type: text
+  
+  foods:
+    type: list
 
 responses:
   utter_greet:
@@ -29,8 +41,32 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
+  utter_and_what_else:
+  - text: "Anything else you want to add"
+  - text: "What else"
+  - text: "You need something else"
+
+  utter_should_process_order:
+  - text: "Should I go ahead and process the order?"
+  - text: "Should we process the order?"
+
+  utter_cancel_order:
+  - text: "Your order has been cancel"
+  - text: "I have cancelled your order"
+
+  utter_process:
+  - text: "Your order has been added to the queue"
+  - text: "Order has been added to the queue"
+
   utter_default:
   - text: "Sorry I dont understand your query"
+
+
+actions:
+  - action_get_menu
+  - action_add_food
+  - action_process_order
+  - action_cancel_order
 
 session_config:
   session_expiration_time: 60
