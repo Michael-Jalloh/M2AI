@@ -1,0 +1,131 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: get_menu
+  examples: |
+    - whats on the menu?
+    - lets see the menu
+    - what u serving today?
+    - whats cooking?
+    - am hungry
+    - get me some food
+    - whats on the offer
+    - what we getting today
+    - whats on the table today
+    - get me some food
+    - food pls
+    - we are hungry
+
+- intent: get_main
+  examples: |
+    - whats on the main menu
+    - whats the main today 
+    - show me the main menu
+    - lets see the main menu
+    - lets see the mains
+    - mains 
+  
+- intent: get_starters
+  examples: |
+    - whats the starter menu
+    - show me starters
+    - i want to startesrs
+    - starters
+    - I will like some starters
+
+- intent: get_lunch
+  examples: |
+    - show us the lunch menu
+    - show me the lunch
+    - lunch
+    - whats for lunch
