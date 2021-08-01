@@ -9,7 +9,7 @@ app = FastAPI()
 bot = TelegramBot("1847183745:AAHMGwI6d4FwXjP44ZkwXFFFQc2hIa8BlIY")
 
 telegram_url_secret = str(token_hex(10))
-bot.set_webhook(f"https://6b581ebab8c0.ngrok.io/{telegram_url_secret}")
+bot.set_webhook(f"https://9e8516d84850.ngrok.io/{telegram_url_secret}")
 print(telegram_url_secret)
 @app.get("/")
 def index():

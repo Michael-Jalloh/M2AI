@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>M2AI</title>
+
+            <!-- slider stylesheet -->
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+            <!-- bootstrap core css -->
+            <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
+            <!-- fonts style -->
+            <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,700&display=swap" rel="stylesheet" />
+
+            <!-- Custom styles for this template -->
+            <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+
+            <!-- responsive style -->
+            <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet" />
+                <title> {% block title %} {% endblock %}  </title>
+            </head>
+
+    <body>
+                <!-- header section Start Here -->
+        <header class="header_section">
+            <div class="container-fluid header_img">
+            <div class="container">
+                <div class="navbar">
+                <div class="logo_box">
+                    <a href="#">
+                    <img src="{{ url_for('static', filename='images/logo.jpeg') }}" />
+                    <span>M2AI</span></a>
+                </div>
+                <nav>
+                    <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">login</a>
+                    </li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row header_detail layout_padding">
+                <div class="col-lg-6">
+                    <h1>
+                    M2AI
+                    </h1>
+                    <h2>
+                    Subcribe to our<br />
+                    RAID GAP SERVICE 
+                    </h2>
+                    <a href="#" class="btn call_to_btn">Book now</a>
+                </div>
+                <div class="col-lg-6 cofee_form" id="contact">
+                        <div id="animContainer"> </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </header>
+
+
+                 <!--  Header Section End Here -->
+
+        {% block content %}
+               
+            {% endblock %}
+    </body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js'></script> <!-- path of bodymovin library-->
+  <script  src="{{ url_for('static', filename='js/script.js') }}"> </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+    </script>
+    <script type="text/javascript">
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: true,
+        navText: [],
+        autoplay: true,
+        autoplayHoverPause: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 3
+          }
+        }
+      });
+    </script>
+</html>

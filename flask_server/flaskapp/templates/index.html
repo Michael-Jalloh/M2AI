@@ -1,0 +1,216 @@
+{% extends "base2.html" %}
+{% block title %}Home page {% endblock %}
+{% block content %}
+ 
+<!-- story section -->
+<section class="layout_padding story_section" id="about">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        <div class="story-detail">
+            <h2>
+            Our Story
+            </h2>
+
+            <p>
+            
+Where does it come from?
+Contrary to popular belief, Lorem Ipsum is not simply random text. 
+It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
+Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, 
+consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, 
+discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" 
+(The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. 
+The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 
+from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+
+            </p>
+
+            <div class="story_btn-container">
+            <a href="#" class="btn story_btn">Read More</a>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6">
+        <div class="justify-content-center justify-content-md-end story_img-box">
+                <img src="{{ url_for('static', filename='images/animation3.gif') }}" />
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+ <!-- end story section -->
+
+<!-- start shop section -->
+<section class="container-fluid shop_section layout_padding">
+    <div class="shop_detail">
+      <h3>
+        M2AI Inspiration
+      </h3>
+      <p>
+        It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. The point of
+        using Lorem Ipsum is that it has a more-or-less normal distribution of
+        letters, as opposed to using 'Content here, content here', making it
+        lookIt is a long established fact that a reader will be distracted by
+        the readable content of a page when looking at its layout. The point
+        of using Lorem Ipsum is that it has a more-or-less normal distribution
+        of letters, as opposed to using 'Content here, content here', making
+        it look
+      </p>
+
+      <a href="#" class="btn shop_btn">Read More</a>
+    </div>
+</section>
+<!-- end shop section -->
+
+  <!-- What we do section -->
+<section class="container-fluid WhatWeDo_section layout_padding">
+    <h3>
+    What We Do
+    </h3>
+
+    <div class="carousel-wrap">
+      <div class="owl-carousel">
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/interact.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Interact</h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/acceptorders.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Accept Orders</h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/requestlocation.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Request Location</h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/Deliver.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Deliver </h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/Gatherdata.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Gather Data</h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/analizedat.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Analize Data </h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class=" WhatWeDo_detail">
+            <div class="WhatWeDo_img-box">
+              <img src="{{ url_for('static', filename='images/provideinformation.jpg') }}" />
+            </div>
+            <div class="WhatWeDo_img-text">
+              <p>
+                <h2>We Analize Data </h2>
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less
+                normal distribution of letters, as opposed to using '
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  <!-- end What we do section -->
+ 
+ 
+  <!-- Chatbot section -->
+<section class="container-fluid Chatbot-section">
+  <div class="Chatbot-detail">
+    <h3>
+     You can try our chatbot Here 
+    </h3>
+    <div class="Chatbot_btn-container">
+      <a href="#" class="btn Chatbot_btn">Chatbot Now</a>
+    </div>
+  </div>
+</section>
+<!-- end Chatbot section -->
+
+ <!-- footer section -->
+ <section class="container-fluid footer_section">
+  <p>
+    Copyright 2021 All Rights Reserved By
+    <a href="#">M2AI</a>
+  </p>
+</section>
+<!-- footer section -->
+ 
+{% endblock %}
