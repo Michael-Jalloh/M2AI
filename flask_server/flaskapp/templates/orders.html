@@ -7,16 +7,8 @@
 
 
 {% block body %}
-<div class="div1">
-    <div>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for msg in messages %}
-                    {{msg}}
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
+<div class="">
+
     <div class="row">
 
 
@@ -25,18 +17,17 @@
 
             <div class="card-header border-0 p-2">
               
-              <div class="d-flex justify-content-end">
-                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">All</a></button>
+              <div class="div1 d-flex justify-content-end">
                 
-                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">Incoming</a></button>
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.orders', order_status='Incoming')}}">Incoming</a></button>
                
-                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">Waiting</a></button>
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.orders', order_status='Waiting')}}">Waiting</a></button>
                
-                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">On Road</a></button>
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.orders', order_status='Outgoing')}}">Outgoing</a></button>
                
-                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">Delivered</a></button>
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.orders', order_status='Delivered')}}">Delivered</a></button>
 
-                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">Cancelled</a></button>
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.orders', order_status='Cancelled')}}">Cancelled</a></button>
 
                 
               </ul>
@@ -57,9 +48,72 @@
           <div class="card-body">
             <div class="row">
               
+              <div class="col-12">
+                <div class="text-success">
+                  {% with messages = get_flashed_messages(category_filter='success') %}
+                      {% if messages %}
+                          {% for msg in messages %}
+                              {{msg}}
+                          {% endfor %}
+                      {% endif %}
+                  {% endwith %}
+              </div>
 
+              
+              </div>
   
   
+              <div class="card-body table-responsive">
+                <table   id="example2" class="table table-bordered table-hover border-top">
+                    <thead>
+                    <tr class="text-center">
+                    <th>Customer</th>
+
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  for order in orders  %}
+                    <tr class='text-center'>
+                      <td>
+                        {{order.customer_name}}
+                      </td>
+                      <td>
+                     
+                      </td>
+                        
+                      <td>
+                        {{order.status}}
+                      </td>
+                      <td class="d-flex justify-content-between">
+                        <a href="/viewOrder/{{order.id}}" class="btn btn-outline-dark">
+                          View
+                        </a>
+                      {% if pageTitle == 'Incoming'  %}
+
+                        <a href="/acceptOrder/{{order.id}}" class="btn btn-outline-success">
+                          Accept
+                        </a>
+                        <a href="/rejectOrder/{{order.id}}" class="btn btn-outline-danger">
+                          Reject
+                        </a>
+
+                      {% elif pageTitle == 'Waiting' %}
+                        <button class="btn btn-info"  data-toggle="modal" data-target="#modal-driver">Assign Driver</button>
+
+                      {% endif %}
+                    </td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+              </div>
+
+
   
   
   
@@ -79,7 +133,58 @@
 
     
 </div>
+
+<div class="modal fade show" id="modal-driver" style="padding-right: 15px;" aria-modal="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Choose Driver</h4>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/assignOrder" method="POST">
+
+          <div class="form-group">
+
+            <input type="hidden" name="order_id" value="1">
+            <label for="username" >Select Driver</label>
+            <div class="input-group date">
+              <select name="driver_id"  class="form-control">
+                <option value="">Driver 1</option>
+                <option value="">Driver 2</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-info">Assign</button>
+          </div>
+        </form>
+
+
+      </div>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
 <script>
     document.getElementById('ordersHref').classList.add("active");
+
+    // accept order
+
+    // assign to driver
+
+
+
+
+
+
 </script>
+
 {% endblock %}

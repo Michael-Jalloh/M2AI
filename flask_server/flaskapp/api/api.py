@@ -1,5 +1,5 @@
 from flask import Blueprint, request, session, render_template, url_for, redirect, flash, send_from_directory
-from flaskapp.models import User, Food, FoodType
+from flaskapp.models import Order, OrderedFood, User, Food, FoodType
 from werkzeug.utils import secure_filename
 from flaskapp.app import db
 import json
@@ -34,3 +34,19 @@ def get_image(image):
         return send_from_directory("static/images/foods/", image)
     return "None"
 
+
+# @api.route("/api/add_order", methods=["GET", "POST"])
+# def add_order():
+#     data = request.get_json()
+#     foods = data["foods"]
+#     for food in foods:
+#         f = Food.query.filter_by(Food.name.lower() == food.lower).first()
+#         if f:
+#             o = Order(1,"Michael")
+#             db.session.add(o)
+#             db.session.commit()
+
+#             orderfood = OrderedFood(2, o.id, f.id)
+#             db.session.add(orderfood)
+#             db.session.commit()
+#     return "ok"
