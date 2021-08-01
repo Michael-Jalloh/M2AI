@@ -29,12 +29,57 @@ def dashboard():
 
 
 @admin.route('/foods')
-def foods():
+@admin.route('/foods/<food_type>')
+def foods(food_type=None):
+    foodTypes = FoodType.query.all()
     if 'email' in session:
         # get the food types
-        return render_template('foods.html')
+        pageTitle = 'All'
+        if food_type != None:
+            foods = Food.query.filter(Food.food_type_id == food_type).filter(Food.is_deleted == 0).all()
+            pageTitle = FoodType.query.get_or_404(food_type).food_type
+        else:
+            foods = Food.query.filter(Food.is_deleted == 0).all()
+
+        return render_template('foods.html', foods=foods, foodTypes=foodTypes, pageTitle = pageTitle)
+
+        
     else:
         return redirect(url_for('auth.login'))
+
+
+
+@admin.route('/deleteFood', methods=['GET', 'POST'])
+def deleteFood():
+    if 'email' in session:
+        if request.method == "POST":
+            id = request.get_json().get('id')
+            food = Food.query.filter_by(id = id).first()
+            try:
+
+                food.is_deleted = 1
+                db.session.commit()
+
+                return "success"
+            except:
+                return 'Ops! Something went wong lol!'
+            
+    
+    else:
+        return redirect(url_for('auth.login'))
+
+
+@admin.route('/drivers')
+@admin.route('/drivers/<driver_status>')
+def drivers(driver_status=None):
+    if 'email' in session:
+        pageTitle = 'All'
+
+        return render_template('drivers.html', pageTitle = pageTitle)
+    
+    else:
+        return redirect(url_for('auth.login'))
+
 
 
 @admin.route('/orders')
@@ -44,25 +89,6 @@ def orders():
     else:
         return redirect(url_for('auth.login'))
 
-
-@admin.route('/drivers')
-def drivers():
-    if 'email' in session:
-        return render_template('drivers.html')
-    
-    else:
-        return redirect(url_for('auth.login'))
-
-
-@admin.route('/getFoods/<food_type>')
-def getFoods(food_type):
-    foods = []
-    if(food_type == 'starter'):
-        foods = Food.query.filter_by(food_type_id = 1).all()
-    else:
-        foods = Food.query.filter_by(food_type_id = 2).all()
-
-    return render_template('foods.html',  foods=foods)
 
 
 @admin.route('/addNewFood', methods=['GET', 'POST'])

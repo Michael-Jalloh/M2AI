@@ -7,7 +7,8 @@
 
 
 {% block body %}
-<div>
+
+<div class="div1">
     <div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -19,53 +20,202 @@
     </div>
     <div class="row">
 
-        <div class="col-12 pb-3">
-            <div class="d-flex justify-content-end">
-                <a class="btn btn-outline-dark" href="{{url_for('admin.addNewFood')}}">Add New Food</a>
+      <div class="col-12 pb-3">
+          <div class="d-flex justify-content-end">
+              <a class="btn btn-outline-1" href="{{url_for('admin.addNewFood')}}">Add New Food</a>
 
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="card">
+          </div>
+      </div>
 
-              <div class="card-header p-2">
-                
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="{{url_for('admin.getFoods', food_type='starter')}}">Starter</a></li>
-                  <li class="nav-item"><a class="nav-link"  href="{{url_for('admin.getFoods', food_type='lunch')}}">Lunch</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{url_for('admin.getFoods', food_type='break')}}" data-toggle="tab">Breakfast</a></li>
-                </ul>
-               
+      <div class="col-12">
+          <div class="card  custom-card-1 bg-white mt-2">
+
+            <div class="card-header border-0 p-2">
+              
+              <div class="d-flex justify-content-end">
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods')}}">All</a></button>
+
+              {%  for type in foodTypes  %}
+                <button class="btn nav-item"><a class="nav-link active" href="{{url_for('admin.foods', food_type=type.id)}}">{{type.food_type}}</a></button>
+
+              {% endfor %}
+              
+              </ul>
+              
               </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    {% for food in foods %}
 
 
-                    <div>
-                        {{food.name}}
-                    </div>
-
-
-                    {% endfor %}
-                  </div>
-
-                </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.nav-tabs-custom -->
           </div>
 
+                      
+          <div class="card-header">
+            <h3>
+              {{pageTitle}}
+
+            </h3>
+          </div>
+
+          <div class="card-body">
+            <div class="row">
+              
+
+              {% for food in foods %}
+              <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                <div class="card border">
+                <div class="card-header  border-bottom-0">
+                    <span class="" style="font-size: 20px;">{{food.name}}</span>
+                    
+                
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <img src="{{ url_for('static', filename='images/foods/'+food.image)}}" alt="user-avatar" class="img-square img-fluid"
+                            style="height: 150px;">
+                            </div>
+                        <div class="col-12 pt-4">
+  
 
 
-    </div>
+                          <div>
+                            <span class="text-muted"><b>Price: </b></span><span class="text-bold"> D {{food.price}}</span>
+                          </div>
+                          {% if pageTitle == 'All' %}
+                          <p class="text-muted text-sm">Category: {{food.category.food_type}} </p>
+                          {% endif %}
+                          <div>
+                            <span class="text-muted text-sm ">Description:</span>
+                            <span class="text-sm text-muted text-bold">
+                              {{food.description}}
+
+                            </span>
+
+                          </div>
+
+
+
+
+
+                        </div>
+  
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-end">
+                      <button class="btn btn-danger" value="" onclick="deletePrompt('{{food.id}}', '{{food.name}}')"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+                </div>
+              </div>
+              {% endfor %}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+            </div>
+            <!-- /.tab-content -->
+          </div><!-- /.card-body -->
+          <!-- /.nav-tabs-custom -->
+      </div>
+
+
+
+
+
+  
+      </div>
+
+
 </div>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   
     document.getElementById('foodHref').classList.add("active");
+    
+
+
+    function deletePrompt(id, name){
+
+
+
+            const confirmBox1 = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn custom-button bg-danger mr-2',
+                cancelButton: 'btn custom-button-2 btn-outline-secondary ml-2'
+            },
+            buttonsStyling: false
+            })
+
+            confirmBox1.fire({
+            title: 'Are you sure?',
+            text: "You'll be deleting " + name,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: "No, don't!"
+            }).then((result1) => {
+            if (result1.isConfirmed) {
+
+
+              // make and ajax call
+            $(document).ready(function(){
+
+              $.ajax({
+                type: "POST",
+                url: "{{url_for('admin.deleteFood')}}",
+                data: JSON.stringify({'id': id}),
+                contentType: "application/json",
+                dataType: 'html',
+                success: function(result) {
+                  // show success and when they click ok, reload
+
+                  const confirmBox2 = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn custom-button-2 bg-secondary',
+                        
+                        },
+                        buttonsStyling: false
+                        })
+
+                        confirmBox2.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'Deleted successful!'
+
+                        }).then((res)=>{
+                            // reloading the page
+                        window.location.reload()
+
+                        })
+
+
+
+                } 
+              });
+            });
+
+
+
+            }
+            })
+
+
+
+
+
+
+
+
+
+    }
+
 
 </script>
+
 {% endblock %}
