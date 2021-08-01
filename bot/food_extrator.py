@@ -23,17 +23,17 @@ class FoodExtrator(EntityExtractor, Component):
     def process(self, message, **kwargs):
         """Retrieve the tokens of the new message, pass it to the classifier
             and append prediction results to the message class."""
-        data = message.data
-        print("==========================")
-        print("==========================")
-        print("==========================")
-        if data:
-            text = data.get("text", "")
-            intent = data.get("intent")["name"]
-            print(text)
-            print(intent)
+        # data = message.data
+        # print("==========================")
+        # print("==========================")
+        # print("==========================")
+        # if data:
+        #     text = data.get("text", "")
+        #     intent = data.get("intent")["name"]
+        #     print(text)
+        #     print(intent)
         
-        print("==========================")
-        print("==========================")
-        print("==========================")
+        # print("==========================")
+        # print("==========================")
+        # print("==========================")
         pass

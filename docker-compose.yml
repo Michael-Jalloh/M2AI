@@ -1,0 +1,96 @@
+version: '3'
+services:
+    telegrambot:
+        container_name: telegrambot-server-m2ai
+        build: 
+            context: ./telegram_bot
+            dockerfile: ./Dockerfile
+        image: telegrambot-m2ai
+        depends_on:
+          - rasa
+        ports:
+        - 8000:8000
+    # app:
+    #     container_name: server-m2ai
+    #     build: 
+    #     context: ./flask_server
+    #     dockerfile: ./Dockerfile
+    #     image: app-m2ai
+    #     # depends_on:
+    #     #   - rasa
+    #     ports:
+    #     - 5000:5000
+    rasa:
+        container_name: rasa-server-m2ai
+        #image: rasa/rasa:1.10.0
+        build: 
+            context: ./bot
+            dockerfile: ./DockerfileRasa
+        image: myrasa-m2ai
+        ports:
+        - 5005:5005
+        volumes:
+        - ./bot:/app
+        
+        command:
+        - run
+        - --cors
+        - "*"
+        - --enable-api
+        ##- --log-file
+        ##- out.log
+        depends_on:
+        - action-server
+    action-server:
+        container_name: rasa-action-server-m2ai
+        #image: rasa/rasa-sdk:1.10.0
+        build: 
+            context: ./bot
+            dockerfile: ./Dockerfile
+        image: myrasa-sdk-m2ai
+        volumes:
+        - ./bot/actions:/app/actions
+        ports:
+        - 5055:5055
+
+    rasa-driver:
+        container_name: rasa-driver-m2ai
+        #image: rasa/rasa:1.10.0
+        build: 
+            context: ./driver_bot
+            dockerfile: ./DockerfileRasa
+        image: myrasa-m2ai
+        ports:
+            - 5006:5005
+        volumes:
+            - ./driver_bot:/app
+            
+        command:
+            - run
+            - --cors
+            - "*"
+            - --enable-api
+            ##- --log-file
+            ##- out.log
+        depends_on:
+            - action-server-driver
+    action-server-driver:
+        container_name: rasa-action-server-driver-m2ai
+        #image: rasa/rasa-sdk:1.10.0
+        build: 
+            context: ./driver_bot
+            dockerfile: ./Dockerfile
+        image: myrasa-sdk-driver-m2ai
+        volumes:
+            - ./driver_bot/actions:/app/actions
+        ports:
+            - 5065:5055
+#   mongo:
+#     container_name: mongo-m2ai
+#     image: mongo
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: password
+#     volumes: 
+#       - ./data/db:/data/db
+  
