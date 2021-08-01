@@ -29,6 +29,13 @@ def seedRestauranteurs():
     
 
 def seedEverything():
+    print("================")
+    print("================")
+    print("================")
+    print("Seeding....")
+    print("================")
+    print("================")
+    print("================")
     seedStatuses()
     seedRestaurants()
     seedRestauranteurs()

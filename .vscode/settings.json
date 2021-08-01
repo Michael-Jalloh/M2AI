@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "m2ai",
+            "database": "${workspaceFolder:Hackathon}/flask_server/flaskapp/app.db"
+        }
+    ]
+}
