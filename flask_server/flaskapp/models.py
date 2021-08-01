@@ -30,6 +30,12 @@ class FoodType(db.Model):
     def __init__(self, id, food_type):
         self.id = id
         self.food_type = food_type
+    
+    def tojson(self):
+        return {
+            "id": self.id,
+            "food_type": self.food_type
+        }
 
 
 
@@ -53,10 +59,6 @@ class User(db.Model):
         self.is_customer = is_customer
 
 
-
-
-
-
 class Restauranteur(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     first_name = db.Column('first_name', db.String(100),  nullable=True)
@@ -65,19 +67,12 @@ class Restauranteur(db.Model):
     password = db.Column('password', db.String(255), nullable=False)
     restaurant_id = db.Column('restaurant_id', db.Integer, nullable=True)
 
-
     def __init__(self, first_name, last_name, email, password, restaurant_id):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
         self.restaurant_id = restaurant_id
-
-
- 
-
- 
-
 
 
 class Food(db.Model):
@@ -99,6 +94,15 @@ class Food(db.Model):
         self.image = image
         self.food_type_id = food_type_id
  
+    def tojson(self):
+        return {
+        "id":self.id,
+        "name": self.name,
+        "price":self.price,
+        "description": self.description,
+        "image": self.image,
+        "food_type_id": self.food_type_id
+        }
 
 class Order(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
