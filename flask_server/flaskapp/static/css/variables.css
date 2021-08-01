@@ -1,0 +1,62 @@
+
+.text-emerald{
+    color: #40916c;
+}
+
+.bg-emerald{
+    background: #40916c !important;
+}
+
+
+
+.base1{
+    background:   #802bb1;
+    color: white;
+}
+
+.base1:hover{
+    background:#2d283e !important;
+    color: whitesmoke;
+
+}
+
+.base2{
+    background:  white;
+    color:  #802bb1;
+}
+
+.base2:hover{
+    background:whitesmoke !important;
+    color: #2d283e;
+
+}
+.base3{
+  background:   #2d283e !important;
+  color: white;
+}
+
+.base3:hover{
+  background: #564f6f!important;
+  color: whitesmoke;
+
+}
+
+.btn-outline-1{
+    color: #3d9970;
+    border-color: #3d9970;
+}
+
+.btn-outline-1:hover{
+    background-color: #3d9970;
+    color: white;
+}
+
+.div1 a{
+    color: #089859;
+
+}
+
+.div1 a:hover{
+  color: #0dd67f;
+  
+}

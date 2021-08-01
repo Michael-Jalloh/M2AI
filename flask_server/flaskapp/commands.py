@@ -1,16 +1,9 @@
-from flaskapp.models import User, UserType, Status, Restaurant, Restauranteur, FoodType, Food, db
+from flaskapp.models import User, Status, Restaurant, Restauranteur, FoodType, db
 entries = []
 
-def seedUserTypes():
-    usertypes = ['Customer', 'Driver']
-
-    for x in range(1, len(usertypes) + 1):
-        if UserType.query.get(x) == None:
-            entries.append(UserType(x, usertypes[x - 1]))
-    
 
 def seedStatuses():
-    statuses = ['Pending', 'Accepted', 'Delivered']
+    statuses = ['Incoming', 'Accepted', 'On Road', 'Delivered', 'Cancelled', 'Busy', 'Idle']
 
     for x in range(1, len(statuses) + 1):
         if Status.query.get(x) == None:
@@ -28,11 +21,7 @@ def seedFoodTypes():
         if FoodType.query.get(x) == None:
             entries.append(FoodType(x, foodtypes[x - 1]))
 
-def seedFood():
 
-    entries.append(Food(1, 'Burger', 323, 'nada', 'images/foods/burger.jpg', 1))
-
-    
 
 def seedRestauranteurs():
     if Restauranteur.query.get(1) == None:
@@ -40,12 +29,10 @@ def seedRestauranteurs():
     
 
 def seedEverything():
-    seedUserTypes()
     seedStatuses()
     seedRestaurants()
     seedRestauranteurs()
     seedFoodTypes()
-    # seedFood()
 
     for entry in entries:
         db.session.add(entry)

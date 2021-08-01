@@ -34,6 +34,11 @@ min-height: 100vh;
 
 
 
+.custom-button-2, .custom-button{
+
+  padding: 0.2rem 0.5rem;
+}
+
 .custom-card-1{
   background: rgba(0, 0, 0, 0.788);
   border-radius: 2rem;
