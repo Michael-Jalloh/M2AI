@@ -17,11 +17,159 @@
             {% endif %}
         {% endwith %}
     </div>
-    dashboard
+    
+
+    <div class="mb-5 background-1 text-white ">
+        <div class="row">
+            <div class="col-4 px-5 pt-3 pb-2 border-right">
+    
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <span class="text-gray text-bold text-sm">
+                            TODAY'S REVENUE
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span style="font-size: 2.4rem;" class="text-white text-bold">
+                           D 700.00
+                        </span>
+
+                    </div>
+                    <div class="col-12 text-sm text-bold" style="font-size: 0.9rem" >
+                        <span class="text-muted ">
+                            All time: 
+                        </span>
+                        <span class="text-emerald">
+                            D 40321.00
+                        </span>
+                        
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-4 px-5 pt-3 pb-2 border-right">
+    
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <span class="text-gray text-bold text-sm">
+                            DAILY ORDERS
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span style="font-size: 2.4rem;" class="text-white text-bold">
+                           50
+                        </span>
+
+                    </div>
+                    <div class="col-12 text-sm text-bold" style="font-size: 0.9rem" >
+                        <span class="text-muted ">
+                            All time: 
+                        </span>
+                        <span class="text-emerald">
+                           934
+                        </span>
+                        
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-4 px-5 pt-3 pb-2 border-right">
+    
+                <div class="row">
+                    <div class="col-12 pb-2">
+                        <span class="text-gray text-bold text-sm">
+                            TOTAL CUSTOMERS
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <span style="font-size: 2.4rem;" class="text-white text-bold">
+                           50
+                        </span>
+
+                    </div>
+                    <div class="col-12 text-sm text-bold" style="font-size: 0.9rem" >
+                        <span class="text-muted ">
+                            New: 
+                        </span>
+                        <span class="text-emerald">
+                           + 9
+                        </span>
+                        
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="p-3 card-title font-weight-bold">REVENUE</h3>
+
+                    </div>
+
+                    <div class="col-12">
+                          <div class="card-body">
+                            <div class="d-flex">
+                              <p class="d-flex flex-column">
+                                <span class="text-bold text-lg">D 820</span>
+                                <span>Revenue Over Time</span>
+                              </p>
+                              <p class="ml-auto d-flex flex-column text-right">
+                                <span class="text-success">
+                                  <i class="fas fa-arrow-up"></i> 12.5%
+                                </span>
+                                <span class="text-muted">Since last week</span>
+                              </p>
+                            </div>
+                            <!-- /.d-flex -->
+            
+                            <div class="position-relative mb-4">
+                              <canvas id="visitors-chart" height="200"></canvas>
+                            </div>
+
+                          </div>
 
 
-    <script>
-        document.getElementById('dashboardHref').classList.add("active");
-    </script>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="p-3 card-title font-weight-bold">TOP SALES</h3>
+
+                    </div>
+
+                    <div class="col-12">
+
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- graphs -->
+
 </div>
+
+<script>
+    document.getElementById('dashboardHref').classList.add("active");
+</script>
 {% endblock %}

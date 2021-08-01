@@ -3,7 +3,7 @@ entries = []
 
 
 def seedStatuses():
-    statuses = ['Incoming', 'Accepted', 'On Road', 'Delivered', 'Cancelled']
+    statuses = ['Incoming', 'Accepted', 'On Road', 'Delivered', 'Cancelled', 'Busy', 'Idle']
 
     for x in range(1, len(statuses) + 1):
         if Status.query.get(x) == None:
