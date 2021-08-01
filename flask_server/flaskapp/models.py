@@ -12,15 +12,6 @@ class Restaurant(db.Model):
         self.address =  address
 
 
-class Status(db.Model):
-    id = db.Column('id', db.Integer, primary_key=True)
-    state = db.Column('state', db.String(55), unique=True)
-    orders = db.relationship('Order', backref='status', lazy=True)
-
-    def __init__(self, id, state):
-        self.id = id
-        self.state = state
-
 
 class FoodType(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
@@ -43,11 +34,12 @@ class User(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     first_name = db.Column('first_name', db.String(100),  nullable=True)
     last_name = db.Column('last_name', db.String(100),  nullable=True)
-    username = db.Column('username', db.String(100), unique=True)
-    chat_id = db.Column('chat_id', db.String(255), unique=True)
-    phone_number = db.Column('phone_number', db.String(7), unique=True)
+    username = db.Column('username', db.String(100), unique=True, nullable=True)
+    chat_id = db.Column('chat_id', db.String(255))
+    phone_number = db.Column('phone_number', db.String(7) )
 
     is_customer = db.Column('is_customer', db.Boolean, default=1)
+    driver_state = db.Column('driver_state', db.String(255))
     is_deactivated = db.Column('is_deactivated', db.Boolean, default=0)
 
 
@@ -106,29 +98,35 @@ class Food(db.Model):
 
 class Order(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
-    customer_id = db.Column('customer_id', db.Integer)
-    food_id = db.Column('food_id', db.Integer)
-    food_name = db.Column('food_name', db.String(255))
-    price = db.Column('price', db.Float)
-    status_id = db.Column('status_id', db.Integer)
-    driver_id = db.Column('driver_id', db.Integer)
-    is_order_ready = db.Column('is_order_ready', db.Boolean)
-    is_order_delivery = db.Column('is_order_delivery', db.Boolean)
-
-    status_id = db.Column(db.Integer, db.ForeignKey('status.id'), nullable=False)
-
-    
+    customer_id = db.Column('customer_id', db.Integer, nullable=True)
+    customer_name = db.Column('customer_name', db.String(255), nullable=True)
+    food_id = db.Column('food_id', db.Integer, nullable=True)
+    food_name = db.Column('food_name', db.String(255), nullable=True)
+    # price = db.Column('price', db.Float, nullable=True)
+    status = db.Column('status', db.String(255), nullable=True, default='Incoming')
+    driver_id = db.Column('driver_id', db.Integer, nullable=True)
+    is_order_ready = db.Column('is_order_ready', db.Boolean, default=0)
+    is_order_delivery = db.Column('is_order_delivery', db.Boolean, default=1)
     ordered_foods = db.relationship('OrderedFood', backref='order', lazy=True)
+
+    def __init__(self, customer_id, customer_name):
+        self.customer_id = customer_id
+        self.customer_name = customer_name
+
+
 
 
 
 class OrderedFood(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
-    quantiy = db.Column('quantity', db.Integer)
-
+    quantiy = db.Column('quantity', db.Integer, nullable=True)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
-
     food_id = db.Column(db.Integer, db.ForeignKey('food.id'), nullable=False)
+
+    def __init__(self, quantity, order_id, food_id):
+        self.quantiy = quantity
+        self.order_id = order_id
+        self.food_id = food_id
     
 
 

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, session, render_template, url_for, redirect, flash
 
-from flaskapp.models import User, Food, FoodType
+from flaskapp.models import User, Food, FoodType, Order
 from werkzeug.utils import secure_filename
 from flaskapp.app import db
 import imghdr
@@ -83,9 +83,83 @@ def drivers(driver_status=None):
 
 
 @admin.route('/orders')
-def orders():
+@admin.route('/orders/<order_status>')
+def orders(order_status=None):
     if 'email' in session:
-        return render_template('orders.html')
+        pageTitle = 'Incoming'
+        if order_status != None:
+            orders = Order.query.filter(Order.status == order_status).all()
+            pageTitle = order_status.capitalize()
+        else:
+            orders =  Order.query.filter(Order.status == pageTitle).all()
+        
+        return render_template('orders.html', orders=orders, pageTitle=pageTitle)
+    else:
+        return redirect(url_for('auth.login'))
+
+
+@admin.route('/assignOrder', methods=['GET', 'POST'])
+def assignOrder():
+    if 'email' in session:
+        if request.method == "POST":
+            driver_id = request.form['driver_id']
+            order_id = request.form['order_id']
+            order = Order.query.filter_by(id = order_id).first()
+           
+            try:
+
+                order.driver_id = driver_id
+                order.status = 'Outgoing'
+                db.session.commit()
+                flash('Driver Successfully Assigned the Order', 'success')
+                return redirect(url_for('admin.orders'))
+            except:
+                return 'Ops! Something went wong lol!'
+            
+    
+    else:
+        return redirect(url_for('auth.login'))
+
+
+@admin.route('/acceptOrder/<int:id>')
+def acceptOrder(id):
+    if 'email' in session:
+      
+        order = Order.query.filter_by(id = id).first()
+        
+        try:
+            
+            order.status = 'Waiting'
+            db.session.commit()
+            flash('Order Accepted', 'success')
+
+            return redirect(url_for('admin.orders'))
+        except Exception as e:
+            print(e)
+            
+    
+    else:
+        return redirect(url_for('auth.login'))
+
+
+
+@admin.route('/rejectOrder/<int:id>')
+def rejectOrder(id):
+    if 'email' in session:
+      
+        order = Order.query.filter_by(id = id).first()
+        
+        try:
+
+            order.status = 'Cancelled'
+            db.session.commit()
+            flash('Order Rejected', 'success')
+
+            return redirect(url_for('admin.orders'))
+        except:
+            return 'Ops! Something went wrong!'
+            
+    
     else:
         return redirect(url_for('auth.login'))
 
@@ -127,3 +201,17 @@ def addNewFood():
             
         
     return render_template('add_new_food.html', foodTypes = foodTypes)
+
+
+
+
+@admin.route('/viewOrder/<int:id>')
+def viewOrder(id):
+    if 'email' in session:
+        #get the order details
+        order = Order.query.filter(Order.id == id).first()
+        
+        return render_template('view_order.html', order=order)
+    else:
+        return redirect(url_for('auth.login'))
+
