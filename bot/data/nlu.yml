@@ -98,8 +98,10 @@ nlu:
 
 - intent: get_menu
   examples: |
-    - whats on the [menu](food_type)?
-    - lets see the [menu](food_type)
+    - whats on the [breakfast](food_type)?
+    - lets see the [breakfast](food_type)
+    - want some [breakfast](food_type)
+    - show me the [breakfast](food_type)
     - what u serving today?
     - whats cooking?
     - am hungry
@@ -110,12 +112,12 @@ nlu:
     - get me some food
     - food pls
     - we are hungry
-    - whats on the [main](food_type) menu
-    - whats the [main](food_type) today 
-    - show me the [main](food_type) menu
-    - lets see the [main](food_type) menu
-    - lets see the [mains](food_type:main)
-    - [mains](food_type)
+    - whats on the [dinner](food_type) menu
+    - whats the [dinner](food_type) today 
+    - show me the [dinner](food_type) menu
+    - lets see the [dinner](food_type) menu
+    - lets see the [dinners](food_type:dinner)
+    - [dinners](food_type)
     - whats the [starter](food_type) menu
     - show me [starters](food_type:starter)
     - i want to [starters](food_type:starter)
@@ -127,6 +129,13 @@ nlu:
     - whats for [lunch](food_type)
     - I need some [lunch](food_type)
     - we need [lunch](food_type)
+    - we want some [drinks](fod_type:drink)
+    - we need [drink](food_type)
+    - a few [drink](food_type)
+    - we want some [drinks](food_type:drink)
+    - get us some [drinks](food_type:drink)
+    - I want some [Drink](food_type:drink)
+    - I want some [Drinks](food_type:drink)
 
 - intent: add_food
   examples: |

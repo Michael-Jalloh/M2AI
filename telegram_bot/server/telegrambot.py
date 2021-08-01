@@ -2,6 +2,14 @@ import requests
 import json
 import urllib
 
+
+class Msg(object):
+    def __init__(self, message, chat_id, user, location):
+        self.message = message
+        self.chat_id = chat_id
+        self.user = user
+        self.location = location
+
 class TelegramBot(object):
     def __init__(self, token):
         self.BOT_URL = f"https://api.telegram.org/bot{token}/"
@@ -83,7 +91,7 @@ class TelegramBot(object):
                 }],
                 ["Cancel"]]
             }
-        
+        print(payload)
         self.send_message(message, chat_id, payload)
     
     def get_contact(self, message, chat_id):
@@ -109,14 +117,39 @@ class TelegramBot(object):
             return r
         except requests.exceptions.ConnectionError:
             return self.no_network()
+
     def no_network(self):
         print("[*] No Network")
         return
 
-class Msg(object):
-    def __init__(self, message, chat_id, user, location):
-        self.message = message
-        self.chat_id = chat_id
-        self.user = user
-        self.location = location
+    def build_keyboard(self, items, row=1, one_time=True):
+        keyboard = []
+        key_row = []
+        for item in items:
+            key_row.append(item)
+            if len(key_row) == row:
+                keyboard.append(key_row.copy())
+                key_row = []
+        if len(key_row) > 0: keyboard.append(key_row)
+        keyboard = {"keyboard": keyboard, "one_time_keyboard": one_time}
+        return keyboard
+
+    def chatbot(self, msg: Msg):
+        try:
+            data = json.dumps({"sender": "t-" + str(msg.chat_id), "message": msg.message})
+            headers = {"Content-type":"application/json", "Accept":"text/plain"}
+            replies = requests.post(self.rasa_url, data= data, headers= headers).json()
+            print(replies)
+            
+            for i,reply in enumerate(replies):
+                if reply.get("buttons"):
+                    buttons = self.build_keyboard(replies["buttons"])
+                    self.send_message(reply["text"].replace("[name]", msg.user), msg.chat_id, buttons)
+                else:
+                    self.send_message(reply["text"].replace("[name]", msg.user), msg.chat_id) 
+        except requests.exceptions.ConnectionError:
+            print("[*] No Network")
+            return
+
+
         

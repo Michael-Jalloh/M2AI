@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, render_template, url_for, redirect, flash
+from flask import Blueprint, request, session, render_template, url_for, redirect, flash, abort
 
 from flaskapp.models import User, Food, FoodType
 from werkzeug.utils import secure_filename
@@ -46,8 +46,6 @@ def foods(food_type=None):
         
     else:
         return redirect(url_for('auth.login'))
-
-
 
 @admin.route('/deleteFood', methods=['GET', 'POST'])
 def deleteFood():
