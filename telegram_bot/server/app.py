@@ -6,7 +6,7 @@ import json
 from server.telegrambot import TelegramBot
 
 app = FastAPI()
-bot = TelegramBot("1847183745:AAHMGwI6d4FwXjP44ZkwXFFFQc2hIa8BlIY")
+bot = TelegramBot("")
 
 telegram_url_secret = str(token_hex(10))
 bot.set_webhook(f"https://9e8516d84850.ngrok.io/{telegram_url_secret}")
